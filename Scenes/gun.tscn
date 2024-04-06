@@ -1,0 +1,50 @@
+[gd_scene load_steps=6 format=3 uid="uid://yyqfbt7e2sgi"]
+
+[ext_resource type="Script" path="res://Scripts/gun.gd" id="1_3vrab"]
+[ext_resource type="Texture2D" uid="uid://bj2l5o3syo0c" path="res://Assets/objects/wpns_16x16_no_outline.png" id="1_148tp"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3wlh8"]
+radius = 264.008
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qrhpl"]
+atlas = ExtResource("1_148tp")
+region = Rect2(0, 144, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0u453"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qrhpl")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Gun" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_3vrab")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_3wlh8")
+
+[node name="WeaponPivot" type="Marker2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="WeaponPivot"]
+position = Vector2(55, 25)
+rotation = 0.785398
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_0u453")
+autoplay = "default"
+
+[node name="ShootingPoint" type="Marker2D" parent="WeaponPivot/AnimatedSprite2D"]
+unique_name_in_owner = true
+position = Vector2(4.94975, -7.77817)
+rotation = -0.785398
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

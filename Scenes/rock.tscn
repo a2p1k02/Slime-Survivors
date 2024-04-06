@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cvbolgddr8cbt"]
+
+[ext_resource type="Texture2D" uid="uid://dk14cc30pbgvo" path="res://Assets/objects/rock_in_water_01.png" id="1_3584o"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g0hax"]
+
+[node name="Rock" type="StaticBody2D"]
+scale = Vector2(4, 4)
+
+[node name="Rock" type="Sprite2D" parent="."]
+position = Vector2(-4.76837e-07, 4.76837e-07)
+texture = ExtResource("1_3584o")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_g0hax")

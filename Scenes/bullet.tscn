@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://ds3wh7rj2bl1h"]
+
+[ext_resource type="Script" path="res://Scripts/bullet.gd" id="1_da2yt"]
+[ext_resource type="Texture2D" uid="uid://bkobweihnboky" path="res://Assets/particles/dust_particles_01.png" id="1_lppsf"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_l8xjc"]
+radius = 8.24621
+
+[node name="Bullet" type="Area2D"]
+top_level = true
+collision_layer = 0
+collision_mask = 3
+script = ExtResource("1_da2yt")
+
+[node name="BulletSprite" type="Sprite2D" parent="."]
+position = Vector2(-36, 0)
+scale = Vector2(2, 2)
+texture = ExtResource("1_lppsf")
+flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_l8xjc")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
